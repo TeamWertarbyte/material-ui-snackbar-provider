@@ -1,0 +1,57 @@
+{
+  "name": "material-ui-snackbar-provider",
+  "version": "0.0.0",
+  "description": "A convenient way to use material-ui's snackbars.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "standard",
+    "build": "babel src -d lib",
+    "prepare": "babel src -d lib",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "publish-docs": "npm run styleguide:build && npm run gh-pages",
+    "gh-pages": "./node_modules/.bin/gh-pages -d styleguide"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamWertarbyte/material-ui-snackbar-provider.git"
+  },
+  "keywords": [
+    "react",
+    "material",
+    "material-design",
+    "material-ui",
+    "snackbar",
+    "react-component"
+  ],
+  "author": "Wertarbyte <kontakt@wertarbyte.com> (https://wertarbyte.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TeamWertarbyte/material-ui-snackbar-provider/issues"
+  },
+  "homepage": "https://github.com/TeamWertarbyte/material-ui-snackbar-provider#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.8.0",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "gh-pages": "^1.0.0",
+    "material-ui": "^1.0.0-alpha.22",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-styleguidist": "^5.5.9",
+    "standard": "^10.0.2"
+  },
+  "peerDependencies": {
+    "material-ui": "< 1.0.0",
+    "react": "^15.5.4"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.8"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
