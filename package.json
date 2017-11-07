@@ -53,5 +53,10 @@
   },
   "standard": {
     "parser": "babel-eslint"
-  }
+  },
+  "files": [
+     "LICENSE",
+     "README.md",
+     "lib/**/*.js"
+  ]
 }
