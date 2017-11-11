@@ -49,7 +49,7 @@ export default withSnackbar()(MyComponent) // export the wrapped component
 |Name            |Type        |Default     |Description
 |----------------|------------|------------|--------------------------------
 |children|`node`||The children that are wrapped by this provider.
-|snackbarProps|`object`||Props to pass through to the snackbar.
+|SnackbarProps|`object`||Props to pass through to the snackbar.
 |style|`object`||Override the inline-styles of the root element.
 
 \* required property

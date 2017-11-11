@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Snackbar from 'material-ui/Snackbar'
+import Button from 'material-ui/Button'
 
 export default class SnackbarProvider extends PureComponent {
   constructor (props) {
@@ -14,7 +15,7 @@ export default class SnackbarProvider extends PureComponent {
   getChildContext () {
     return {
       snackbar: {
-        showMessage: this.showMessage.bind(this)
+        showMessage: this.showMessage
       }
     }
   }
@@ -24,12 +25,13 @@ export default class SnackbarProvider extends PureComponent {
    * @param {string} message message to display
    * @param {string} [action] label for the action button
    * @param {function} [handleAction] click handler for the action button
+   * @public
    */
-  showMessage (message, action, handleAction) {
+  showMessage = (message, action, handleAction) => {
     this.setState({ open: true, message, action, handleAction })
   }
 
-  handleActionTouchTap = () => {
+  handleActionClick = () => {
     this.handleRequestClose()
     this.state.handleAction()
   }
@@ -58,8 +60,11 @@ export default class SnackbarProvider extends PureComponent {
           {...snackbarProps}
           open={open}
           message={message || ''}
-          action={action}
-          onActionTouchTap={this.handleActionTouchTap}
+          action={action != null && (
+            <Button color='accent' dense onClick={this.handleActionClick}>
+              UNDO
+            </Button>
+          )}
           onRequestClose={this.handleRequestClose}
         />
       </div>
@@ -81,7 +86,7 @@ SnackbarProvider.propTypes = {
   /**
    * Props to pass through to the snackbar.
    */
-  snackbarProps: PropTypes.object,
+  SnackbarProps: PropTypes.object,
   /**
    * Override the inline-styles of the root element.
    */
