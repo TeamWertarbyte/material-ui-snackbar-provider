@@ -29,7 +29,7 @@ export default class SnackbarProvider extends PureComponent {
     this.setState({ open: true, message, action, handleAction })
   }
 
-  handleActionTouchTap = () => {
+  handleActionClick = () => {
     this.handleRequestClose()
     this.state.handleAction()
   }
@@ -59,7 +59,7 @@ export default class SnackbarProvider extends PureComponent {
           open={open}
           message={message || ''}
           action={action}
-          onActionTouchTap={this.handleActionTouchTap}
+          onActionClick={this.handleActionClick}
           onRequestClose={this.handleRequestClose}
         />
       </div>
