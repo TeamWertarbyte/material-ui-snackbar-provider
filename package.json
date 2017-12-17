@@ -45,8 +45,8 @@
     "standard": "^10.0.2"
   },
   "peerDependencies": {
-    "material-ui": "< 1.0.0",
-    "react": "^15.5.4"
+    "material-ui": "^1.0.0-beta.20",
+    "react": "^15.5.4 || ^16.0.0"
   },
   "dependencies": {
     "prop-types": "^15.5.8"
