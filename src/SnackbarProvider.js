@@ -32,11 +32,11 @@ export default class SnackbarProvider extends PureComponent {
   }
 
   handleActionClick = () => {
-    this.handleRequestClose()
+    this.handleClose()
     this.state.handleAction()
   }
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false, handleAction: null })
   }
 
@@ -65,7 +65,7 @@ export default class SnackbarProvider extends PureComponent {
               UNDO
             </Button>
           )}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
         />
       </div>
     )
