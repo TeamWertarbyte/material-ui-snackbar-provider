@@ -6,11 +6,12 @@
 A convenient way to use [material-ui][]'s snackbars.
 
 ## Installation
-For material-ui version 0.*
+For material-ui version 0.x
 ```shell
 npm i --save material-ui-snackbar-provider
 ```
-For material-ui version 1.*
+
+For material-ui version 1.0.0-beta
 ```shell
 npm i --save material-ui-snackbar-provider@next
 ```
