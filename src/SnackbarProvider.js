@@ -62,6 +62,7 @@ export default class SnackbarProvider extends PureComponent {
       actions.push(<Button key="button" color='secondary' size='small' onClick={this.handleActionClick}> {action}</Button>)
     if (showCloseButton)
       actions.push(<IconButton
+        style={{ width: '32px', height: '32px' }}
         key="close"
         aria-label="Close"
         color="inherit"
