@@ -59,6 +59,7 @@ export default withSnackbar()(MyComponent) // export the wrapped component
 * `message` (string) – message to display
 * `action` (string, _optional_) – label for the action button
 * `handler` (function, _optional_) – click handler for the action button
+* `close` (boolean, _optional_) – Whether to show the close button or not
 
 ## Concerns
 > Dude, this is not pretty React-like, I don't want to call a function to do something that changes the UI! I want to display a snackbar based on the state only, e.g. by using Redux.
@@ -78,7 +79,7 @@ deleteEmail (id) {
   .catch((e) => {
     this.snackbar.showMessage(
       'E-mail could not be deleted',
-      'Retry', () => this.deleteEmail(id))
+      'Retry', () => this.deleteEmail(id), true)
   })
 }
 ```

@@ -2,17 +2,20 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Snackbar from 'material-ui/Snackbar'
 import Button from 'material-ui/Button'
+import IconButton from 'material-ui/IconButton'
+import CloseIcon from 'material-ui-icons/Close'
 
 export default class SnackbarProvider extends PureComponent {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       message: null,
-      open: false
+      open: false,
+      showCloseButton: false
     }
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       snackbar: {
         showMessage: this.showMessage
@@ -27,8 +30,8 @@ export default class SnackbarProvider extends PureComponent {
    * @param {function} [handleAction] click handler for the action button
    * @public
    */
-  showMessage = (message, action, handleAction) => {
-    this.setState({ open: true, message, action, handleAction })
+  showMessage = (message, action, handleAction, showCloseButton) => {
+    this.setState({ open: true, message, action, handleAction, showCloseButton })
   }
 
   handleActionClick = () => {
@@ -40,11 +43,12 @@ export default class SnackbarProvider extends PureComponent {
     this.setState({ open: false, handleAction: null })
   }
 
-  render () {
+  render() {
     const {
       action,
       message,
-      open
+      open,
+      showCloseButton
     } = this.state
 
     const {
@@ -53,6 +57,20 @@ export default class SnackbarProvider extends PureComponent {
       style = {}
     } = this.props
 
+    let actions = [];
+    if (action != null)
+      actions.push(<Button key="button" color='secondary' size='small' onClick={this.handleActionClick}> {action}</Button>)
+    if (showCloseButton)
+      actions.push(<IconButton
+        key="close"
+        aria-label="Close"
+        color="inherit"
+        onClick={this.handleClose}
+      >
+        <CloseIcon />
+      </IconButton>)
+
+
     return (
       <div style={{ width: 'inherit', height: 'inherit', ...style }}>
         {children}
@@ -60,11 +78,7 @@ export default class SnackbarProvider extends PureComponent {
           {...snackbarProps}
           open={open}
           message={message || ''}
-          action={action != null && (
-            <Button color='accent' dense onClick={this.handleActionClick}>
-              UNDO
-            </Button>
-          )}
+          action={actions}
           onClose={this.handleClose}
         />
       </div>
