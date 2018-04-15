@@ -14,7 +14,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TeamWertarbyte/material-ui-snackbar-provider.git"
+    "url":
+      "git+https://github.com/TeamWertarbyte/material-ui-snackbar-provider.git"
   },
   "keywords": [
     "react",
@@ -27,9 +28,11 @@
   "author": "Wertarbyte <kontakt@wertarbyte.com> (https://wertarbyte.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TeamWertarbyte/material-ui-snackbar-provider/issues"
+    "url":
+      "https://github.com/TeamWertarbyte/material-ui-snackbar-provider/issues"
   },
-  "homepage": "https://github.com/TeamWertarbyte/material-ui-snackbar-provider#readme",
+  "homepage":
+    "https://github.com/TeamWertarbyte/material-ui-snackbar-provider#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.8.0",
@@ -46,18 +49,16 @@
   },
   "peerDependencies": {
     "material-ui": "^1.0.0-beta.24",
-    "material-ui-icons": "^1.0.0-beta.36",
+    "@material-ui/icons": "^1.0.0-beta.42",
     "react": "^15.5.4 || ^16.0.0"
   },
   "dependencies": {
+    "material-ui-snackbar-provider":
+      "git+https://git@github.com/Unforgiven-wanda/material-ui-snackbar-provider.git#next",
     "prop-types": "^15.5.8"
   },
   "standard": {
     "parser": "babel-eslint"
   },
-  "files": [
-    "LICENSE",
-    "README.md",
-    "lib/**/*.js"
-  ]
+  "files": ["LICENSE", "README.md", "lib/**/*.js"]
 }

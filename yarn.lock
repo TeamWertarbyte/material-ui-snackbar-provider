@@ -3327,6 +3327,12 @@ markdown-to-jsx@^5.3.3:
     remark-parse "^4.0.0"
     unified "^6.1.5"
 
+"material-ui-snackbar-provider@git+https://git@github.com/Unforgiven-wanda/material-ui-snackbar-provider.git#next":
+  version "1.0.0-pre.4"
+  resolved "git+https://git@github.com/Unforgiven-wanda/material-ui-snackbar-provider.git#5d1fd9c40e60be23ae86ee7021fffc2e5387b84e"
+  dependencies:
+    prop-types "^15.5.8"
+
 material-ui@^1.0.0-beta.40:
   version "1.0.0-beta.41"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.41.tgz#0869bed008caa10003ab20ea726476b560c23160"
