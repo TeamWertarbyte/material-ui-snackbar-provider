@@ -53,8 +53,6 @@
     "react": "^15.5.4 || ^16.0.0"
   },
   "dependencies": {
-    "material-ui-snackbar-provider":
-      "git+https://git@github.com/Unforgiven-wanda/material-ui-snackbar-provider.git#next",
     "prop-types": "^15.5.8"
   },
   "standard": {
