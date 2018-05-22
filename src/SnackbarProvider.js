@@ -4,12 +4,9 @@ import Snackbar from '@material-ui/core/Snackbar'
 import Button from '@material-ui/core/Button'
 
 export default class SnackbarProvider extends PureComponent {
-  constructor (props) {
-    super(props)
-    this.state = {
-      message: null,
-      open: false
-    }
+  state = {
+    message: null,
+    open: false
   }
 
   getChildContext () {
