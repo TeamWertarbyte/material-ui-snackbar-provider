@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Snackbar from 'material-ui/Snackbar'
-import Button from 'material-ui/Button'
+import Snackbar from '@material-ui/core/Snackbar'
+import Button from '@material-ui/core/Button'
 
 export default class SnackbarProvider extends PureComponent {
   constructor (props) {

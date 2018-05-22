@@ -6,11 +6,7 @@
   "scripts": {
     "test": "standard",
     "build": "babel src -d lib",
-    "prepare": "babel src -d lib",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
-    "publish-docs": "npm run styleguide:build && npm run gh-pages",
-    "gh-pages": "./node_modules/.bin/gh-pages -d styleguide"
+    "prepare": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -31,22 +27,22 @@
   },
   "homepage": "https://github.com/TeamWertarbyte/material-ui-snackbar-provider#readme",
   "devDependencies": {
+    "@material-ui/core": "^1.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.8.0",
     "babel-eslint": "^7.2.3",
-    "babel-preset-es2015": "^6.14.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
-    "gh-pages": "^1.0.0",
-    "material-ui": "^1.0.0-beta.24",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
-    "react-styleguidist": "^5.5.9",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "standard": "^10.0.2"
   },
   "peerDependencies": {
-    "material-ui": "^1.0.0-beta.24",
-    "react": "^15.5.4 || ^16.0.0"
+    "@material-ui/core": "^1.0.0",
+    "react": "^16.3.0"
   },
   "dependencies": {
     "prop-types": "^15.5.8"
