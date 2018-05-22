@@ -1,7 +1,6 @@
 # Material-UI Snackbar Provider
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Build Status](https://travis-ci.org/TeamWertarbyte/material-ui-snackbar-provider.svg?branch=next)](https://travis-ci.org/TeamWertarbyte/material-ui-snackbar-provider)
-[![Greenkeeper badge](https://badges.greenkeeper.io/TeamWertarbyte/material-ui-snackbar-provider.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/TeamWertarbyte/material-ui-snackbar-provider.svg)](https://travis-ci.org/TeamWertarbyte/material-ui-snackbar-provider)
 
 A convenient way to use [material-ui][]'s snackbars.
 
