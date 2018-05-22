@@ -1,20 +1,15 @@
 # Material-UI Snackbar Provider
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Build Status](https://travis-ci.org/TeamWertarbyte/material-ui-snackbar-provider.svg?branch=master)](https://travis-ci.org/TeamWertarbyte/material-ui-snackbar-provider)
-[![Greenkeeper badge](https://badges.greenkeeper.io/TeamWertarbyte/material-ui-snackbar-provider.svg)](https://greenkeeper.io/)
 
 A convenient way to use [material-ui][]'s snackbars.
 
 ## Installation
-For material-ui version 0.x
 ```shell
-npm i --save material-ui-snackbar-provider
+npm i --save material-ui-snackbar-provider@legacy
 ```
 
-For material-ui version 1.0.0-beta
-```shell
-npm i --save material-ui-snackbar-provider@next
-```
+If you are using Materiall-UI 1.0.0 or later, you need to use [this version](https://github.com/TeamWertarbyte/material-ui-snackbar-provider) instead.
 
 ## Usage
 Simply wrap all components that should display snackbars with the `SnackbarProvider` component,
