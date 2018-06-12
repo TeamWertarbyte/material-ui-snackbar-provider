@@ -4,7 +4,9 @@
   "description": "A convenient way to use material-ui's snackbars.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "standard",
+    "test": "standard && jest",
+    "test:unit": "jest",
+    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "build": "babel src -d lib",
     "prepare": "babel src -d lib"
   },
@@ -36,6 +38,10 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.11.1",
+    "coveralls": "^3.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.1.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "standard": "^10.0.2"
@@ -46,6 +52,19 @@
   },
   "dependencies": {
     "prop-types": "^15.5.8"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/shim.js",
+      "./test/jestsetup.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/test"
+    ],
+    "roots": [
+      "src",
+      "test"
+    ]
   },
   "standard": {
     "parser": "babel-eslint"
