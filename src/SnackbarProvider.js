@@ -59,7 +59,7 @@ export default class SnackbarProvider extends PureComponent {
           message={message || ''}
           action={action != null && (
             <Button color='accent' dense onClick={this.handleActionClick}>
-              UNDO
+              {action}
             </Button>
           )}
           onClose={this.handleClose}
