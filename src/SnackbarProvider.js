@@ -46,7 +46,7 @@ export default class SnackbarProvider extends PureComponent {
 
     const {
       children,
-      snackbarProps = {},
+      SnackbarProps = {},
       style = {}
     } = this.props
 
@@ -54,7 +54,7 @@ export default class SnackbarProvider extends PureComponent {
       <div style={{ width: 'inherit', height: 'inherit', ...style }}>
         {children}
         <Snackbar
-          {...snackbarProps}
+          {...SnackbarProps}
           open={open}
           message={message || ''}
           action={action != null && (
