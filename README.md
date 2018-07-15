@@ -18,7 +18,7 @@ e.g. by wrapping your router with it.
 import { SnackbarProvider } from 'material-ui-snackbar-provider'
 
 // somewhere at the root of your app
-<SnackbarProvider snackbarProps={{ autoHideDuration: 4000 }}>
+<SnackbarProvider SnackbarProps={{ autoHideDuration: 4000 }}>
   {/* the rest of your app belongs here, e.g. the router */}
 </SnackbarProvider>
 ```
