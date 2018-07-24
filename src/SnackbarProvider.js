@@ -46,12 +46,11 @@ export default class SnackbarProvider extends PureComponent {
 
     const {
       children,
-      SnackbarProps = {},
-      style = {}
+      SnackbarProps = {}
     } = this.props
 
     return (
-      <div style={{ width: 'inherit', height: 'inherit', ...style }}>
+      <React.Fragment>
         {children}
         <Snackbar
           {...SnackbarProps}
@@ -68,7 +67,7 @@ export default class SnackbarProvider extends PureComponent {
           )}
           onClose={this.handleClose}
         />
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -87,9 +86,5 @@ SnackbarProvider.propTypes = {
   /**
    * Props to pass through to the snackbar.
    */
-  SnackbarProps: PropTypes.object,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: PropTypes.object
+  SnackbarProps: PropTypes.object
 }
