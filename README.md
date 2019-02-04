@@ -84,7 +84,7 @@ deleteEmail (id) {
 
 So this package makes snackbars a lot easier to use, which is all it's intended to do.
 
-[material-ui]: http://www.material-ui.com/#/
+[material-ui]: https://material-ui.com/
 [redux-thunk]: https://github.com/gaearon/redux-thunk
 
 ## License
