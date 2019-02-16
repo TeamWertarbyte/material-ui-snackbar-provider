@@ -65,6 +65,13 @@ describe('SnackbarProvider', () => {
     const tree = mount(<SnackbarProvider SnackbarProps={{ autoHideDuration: 6000 }} />)
     expect(tree.find(Snackbar).prop('autoHideDuration')).toBe(6000)
   })
+
+  it('propagates ButtonProps to the action Button component', () => {
+    const tree = mount(<SnackbarProvider ButtonProps={{ color: 'primary' }} />)
+    showMessage(tree, 'Internet deleted', 'Undo', () => {})
+    tree.update()
+    expect(tree.find(Button).prop('color')).toBe('primary')
+  })
 })
 
 function showMessage (snackbarProvider, ...other) {

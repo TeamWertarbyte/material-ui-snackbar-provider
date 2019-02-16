@@ -45,6 +45,7 @@ export default class SnackbarProvider extends PureComponent {
     } = this.state
 
     const {
+      ButtonProps = {},
       children,
       SnackbarProps = {}
     } = this.props
@@ -60,6 +61,7 @@ export default class SnackbarProvider extends PureComponent {
             <Button
               color='secondary'
               size='small'
+              {...ButtonProps}
               onClick={this.handleActionClick}
             >
               {action}
@@ -79,6 +81,10 @@ SnackbarProvider.childContextTypes = {
 }
 
 SnackbarProvider.propTypes = {
+  /**
+   * Props to pass through to the action button.
+   */
+  ButtonProps: PropTypes.object,
   /**
    * The children that are wrapped by this provider.
    */

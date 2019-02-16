@@ -48,10 +48,14 @@ export default withSnackbar()(MyComponent) // export the wrapped component
 ### SnackbarProvider Props
 |Name            |Type        |Default     |Description
 |----------------|------------|------------|--------------------------------
+|ButtonProps|`object`||Props to pass through to the action [button][mui-button].
 |children|`node`||The children that are wrapped by this provider.
-|SnackbarProps|`object`||Props to pass through to the snackbar.
+|SnackbarProps|`object`||Props to pass through to the [snackbar][mui-snackbar].
 
 \* required property
+
+[mui-button]: https://material-ui.com/api/button/
+[mui-snackbar]: https://material-ui.com/api/snackbar/
 
 ### Snackbar methods
 `snackbar.showMessage(message, [action, handler])`
