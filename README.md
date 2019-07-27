@@ -23,7 +23,32 @@ import { SnackbarProvider } from 'material-ui-snackbar-provider'
 </SnackbarProvider>
 ```
 
-You can then display messages with the `withSnackbar` HOC and the injected `snackbar` prop in your components.
+You can then display messages with the `useSnackbar` hook.
+
+```js
+import { useSnackbar } from 'material-ui-snackbar-provider'
+
+export default function MyComponent (props) {
+  const snackbar = useSnackbar()
+
+  const handleSomething = () => {
+    snackbar.showMessage(
+      'Something happened!',
+      'Undo', () => handleUndo()
+    )
+  }
+
+  const handleUndo = () => {
+    // *snip*
+  }
+
+  return (
+    // *snip*
+  )
+}
+```
+
+If you're not using React ^16.8.0 and our you can't use hooks (e.g. in a class component), you can use the `withSnackbar` HOC and the injected `snackbar` prop instead.
 
 ```js
 import { withSnackbar } from 'material-ui-snackbar-provider'
