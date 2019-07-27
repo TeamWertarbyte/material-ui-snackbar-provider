@@ -2,19 +2,12 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Snackbar from '@material-ui/core/Snackbar'
 import Button from '@material-ui/core/Button'
+import SnackbarContext from './SnackbarContext'
 
 export default class SnackbarProvider extends PureComponent {
   state = {
     message: null,
     open: false
-  }
-
-  getChildContext () {
-    return {
-      snackbar: {
-        showMessage: this.showMessage
-      }
-    }
   }
 
   /**
@@ -52,7 +45,13 @@ export default class SnackbarProvider extends PureComponent {
 
     return (
       <React.Fragment>
-        {children}
+        <SnackbarContext.Provider
+          value={{
+            showMessage: this.showMessage
+          }}
+        >
+          {children}
+        </SnackbarContext.Provider>
         <Snackbar
           {...SnackbarProps}
           open={open}
@@ -72,12 +71,6 @@ export default class SnackbarProvider extends PureComponent {
       </React.Fragment>
     )
   }
-}
-
-SnackbarProvider.childContextTypes = {
-  snackbar: PropTypes.shape({
-    showMessage: PropTypes.func
-  })
 }
 
 SnackbarProvider.propTypes = {

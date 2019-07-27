@@ -1,27 +1,21 @@
 /* eslint-env jest */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { mount } from 'enzyme'
 import withSnackbar from './withSnackbar'
+import SnackbarContext from './SnackbarContext';
 
 describe('withSnackbar', () => {
   it('adds a snackbar prop', () => {
-    const dummyContext = {
-      snackbar: {}
+    const dummySnackbarContext = {
+      showMessage: () => {}
     }
 
-    class DummySnackbarProvider extends React.Component {
-      getChildContext () {
-        return dummyContext
-      }
-
-      render () {
-        return <div {...this.props} />
-      }
-    }
-
-    DummySnackbarProvider.childContextTypes = {
-      snackbar: PropTypes.any
+    function DummySnackbarProvider ({ children }) {
+      return (
+        <SnackbarContext.Provider value={dummySnackbarContext}>
+          {children}
+        </SnackbarContext.Provider>
+      )
     }
 
     const Component = () => {
@@ -35,6 +29,6 @@ describe('withSnackbar', () => {
       </DummySnackbarProvider>
     ).find(Component)
 
-    expect(tree.prop('snackbar')).toBe(dummyContext.snackbar)
+    expect(tree.prop('snackbar')).toBe(dummySnackbarContext)
   })
 })

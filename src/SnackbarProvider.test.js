@@ -3,16 +3,15 @@ import React from 'react'
 import { mount, shallow } from 'enzyme'
 import SnackbarProvider from './SnackbarProvider'
 import { Snackbar, Button } from '@material-ui/core'
+import SnackbarContext from './SnackbarContext';
 
 describe('SnackbarProvider', () => {
   it('adds a snackbar property to the context', () => {
-    const tree = shallow(<SnackbarProvider />)
+    const { Consumer, snackbar } = snackbarGrabber()
+    mount(<SnackbarProvider><Consumer /></SnackbarProvider>)
 
-    const childContext = tree.instance().getChildContext()
-    expect(childContext).toEqual({
-      snackbar: {
-        showMessage: expect.any(Function)
-      }
+    expect(snackbar()).toEqual({
+      showMessage: expect.any(Function)
     })
   })
 
@@ -22,9 +21,9 @@ describe('SnackbarProvider', () => {
   })
 
   it('shows a snackbar after calling showMessage', () => {
-    const tree = mount(<SnackbarProvider />)
+    const { tree, snackbar } = getSnackbarWithContext()
 
-    showMessage(tree, 'Something went wrong')
+    snackbar.showMessage('Something went wrong')
     tree.update()
     expect(tree.find(Snackbar).prop('open')).toBe(true)
     expect(tree.find(Snackbar).prop('message')).toBe('Something went wrong')
@@ -32,17 +31,18 @@ describe('SnackbarProvider', () => {
   })
 
   it('can display an action button', () => {
-    const tree = mount(<SnackbarProvider />)
+    const { tree, snackbar } = getSnackbarWithContext()
 
-    showMessage(tree, 'Something went wrong', 'Retry', () => {})
+    snackbar.showMessage('Something went wrong', 'Retry', () => {})
     tree.update()
     expect(tree.find(Snackbar).find(Button).text()).toBe('Retry')
   })
 
   it('calls the action callback after clicking the button and closes the snackbar', () => {
-    const tree = mount(<SnackbarProvider />)
+    const { tree, snackbar } = getSnackbarWithContext()
+
     const actionCallback = jest.fn()
-    showMessage(tree, 'Something went wrong', 'Retry', actionCallback)
+    snackbar.showMessage('Something went wrong', 'Retry', actionCallback)
     tree.update()
 
     tree.find(Snackbar).find(Button).simulate('click')
@@ -52,8 +52,9 @@ describe('SnackbarProvider', () => {
   })
 
   it('hides the snackbar when its onClose prop is called', () => {
-    const tree = mount(<SnackbarProvider />)
-    showMessage(tree, 'Test')
+    const { tree, snackbar } = getSnackbarWithContext()
+
+    snackbar.showMessage('Test')
     tree.update()
 
     tree.find(Snackbar).prop('onClose')()
@@ -63,17 +64,33 @@ describe('SnackbarProvider', () => {
 
   it('propagates SnackbarProps to the Snackbar component', () => {
     const tree = mount(<SnackbarProvider SnackbarProps={{ autoHideDuration: 6000 }} />)
+
     expect(tree.find(Snackbar).prop('autoHideDuration')).toBe(6000)
   })
 
   it('propagates ButtonProps to the action Button component', () => {
-    const tree = mount(<SnackbarProvider ButtonProps={{ color: 'primary' }} />)
-    showMessage(tree, 'Internet deleted', 'Undo', () => {})
+    const { tree, snackbar } = getSnackbarWithContext({ ButtonProps: { color: 'primary' } })
+    snackbar.showMessage('Internet deleted', 'Undo', () => {})
     tree.update()
     expect(tree.find(Button).prop('color')).toBe('primary')
   })
 })
 
-function showMessage (snackbarProvider, ...other) {
-  snackbarProvider.instance().getChildContext().snackbar.showMessage(...other)
+function snackbarGrabber () {
+  let snackbar = null
+  return {
+    snackbar: () => snackbar,
+    Consumer: () => {
+      snackbar = React.useContext(SnackbarContext)
+      return null
+    }
+  }
+}
+
+function getSnackbarWithContext (props) {
+  const { Consumer, snackbar } = snackbarGrabber()
+  const tree = mount(<SnackbarProvider {...props}><Consumer /></SnackbarProvider>)
+  return {
+    tree, snackbar: snackbar()
+  }
 }
