@@ -2,7 +2,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import withSnackbar from './withSnackbar'
-import SnackbarContext from './SnackbarContext';
+import SnackbarContext from './SnackbarContext'
 
 describe('withSnackbar', () => {
   it('adds a snackbar prop', () => {

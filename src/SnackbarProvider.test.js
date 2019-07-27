@@ -1,9 +1,9 @@
 /* eslint-env jest */
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import SnackbarProvider from './SnackbarProvider'
 import { Snackbar, Button } from '@material-ui/core'
-import SnackbarContext from './SnackbarContext';
+import SnackbarContext from './SnackbarContext'
 
 describe('SnackbarProvider', () => {
   it('adds a snackbar property to the context', () => {
