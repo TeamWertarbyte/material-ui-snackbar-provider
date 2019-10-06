@@ -7,8 +7,8 @@
     "test": "standard && jest",
     "test:unit": "jest",
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "build": "babel src -d lib && rm lib/*.test.js",
-    "prepare": "babel src -d lib && rm lib/*.test.js"
+    "build": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')",
+    "prepare": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')"
   },
   "repository": {
     "type": "git",
@@ -72,6 +72,7 @@
   "files": [
     "LICENSE",
     "README.md",
-    "lib/**/*.js"
+    "lib/**/*.js",
+    "lib/**/*.d.ts"
   ]
 }
