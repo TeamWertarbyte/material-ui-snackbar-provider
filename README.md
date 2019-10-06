@@ -7,7 +7,7 @@ A convenient way to use [material-ui][]'s snackbars.
 
 ## Installation
 ```shell
-npm i --save material-ui-snackbar-provider@next
+npm i --save material-ui-snackbar-provider
 ```
 
 ## Usage
