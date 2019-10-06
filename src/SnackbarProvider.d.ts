@@ -3,9 +3,9 @@ import { ButtonProps } from '@material-ui/core/Button';
 import { SnackbarProps } from '@material-ui/core/Snackbar';
 
 export interface SnackbarProviderProps {
-    ButtonProps?: ButtonProps,
+    ButtonProps?: Partial<ButtonProps>,
     children: React.ReactNode,
-    SnackbarProps?: SnackbarProps
+    SnackbarProps?: Partial<SnackbarProps>
 }
 
 declare const SnackbarProvider: React.ComponentType<SnackbarProviderProps>
