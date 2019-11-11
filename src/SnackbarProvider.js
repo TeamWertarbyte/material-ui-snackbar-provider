@@ -10,6 +10,13 @@ export default class SnackbarProvider extends PureComponent {
     open: false
   }
 
+  constructor (props) {
+    super(props)
+    this.contextValue = {
+      showMessage: this.showMessage
+    }
+  }
+
   /**
    * Display a message with this snackbar.
    * @param {string} message message to display
@@ -46,9 +53,7 @@ export default class SnackbarProvider extends PureComponent {
     return (
       <React.Fragment>
         <SnackbarContext.Provider
-          value={{
-            showMessage: this.showMessage
-          }}
+          value={this.contextValue}
         >
           {children}
         </SnackbarContext.Provider>

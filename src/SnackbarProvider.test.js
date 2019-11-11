@@ -74,6 +74,14 @@ describe('SnackbarProvider', () => {
     tree.update()
     expect(tree.find(Button).prop('color')).toBe('primary')
   })
+
+  it('always returns the same reference', () => {
+    const { Consumer, snackbar } = snackbarGrabber()
+    const tree = mount(<SnackbarProvider><Consumer /></SnackbarProvider>)
+    const firstSnackbar = snackbar()
+    tree.instance().forceUpdate()
+    expect(snackbar()).toBe(firstSnackbar)
+  })
 })
 
 function snackbarGrabber () {
