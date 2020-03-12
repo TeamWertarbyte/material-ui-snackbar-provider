@@ -8,7 +8,11 @@ import SnackbarContext from './SnackbarContext'
 describe('SnackbarProvider', () => {
   it('adds a snackbar property to the context', () => {
     const { Consumer, snackbar } = snackbarGrabber()
-    mount(<SnackbarProvider><Consumer /></SnackbarProvider>)
+    mount(
+      <SnackbarProvider>
+        <Consumer />
+      </SnackbarProvider>
+    )
 
     expect(snackbar()).toEqual({
       showMessage: expect.any(Function)
@@ -35,7 +39,12 @@ describe('SnackbarProvider', () => {
 
     snackbar.showMessage('Something went wrong', 'Retry', () => {})
     tree.update()
-    expect(tree.find(Snackbar).find(Button).text()).toBe('Retry')
+    expect(
+      tree
+        .find(Snackbar)
+        .find(Button)
+        .text()
+    ).toBe('Retry')
   })
 
   it('calls the action callback after clicking the button and closes the snackbar', () => {
@@ -45,7 +54,10 @@ describe('SnackbarProvider', () => {
     snackbar.showMessage('Something went wrong', 'Retry', actionCallback)
     tree.update()
 
-    tree.find(Snackbar).find(Button).simulate('click')
+    tree
+      .find(Snackbar)
+      .find(Button)
+      .simulate('click')
     expect(actionCallback).toHaveBeenCalled()
     tree.update()
     expect(tree.find(Snackbar).prop('open')).toBe(false)
@@ -63,13 +75,17 @@ describe('SnackbarProvider', () => {
   })
 
   it('propagates SnackbarProps to the Snackbar component', () => {
-    const tree = mount(<SnackbarProvider SnackbarProps={{ autoHideDuration: 6000 }} />)
+    const tree = mount(
+      <SnackbarProvider SnackbarProps={{ autoHideDuration: 6000 }} />
+    )
 
     expect(tree.find(Snackbar).prop('autoHideDuration')).toBe(6000)
   })
 
   it('propagates ButtonProps to the action Button component', () => {
-    const { tree, snackbar } = getSnackbarWithContext({ ButtonProps: { color: 'primary' } })
+    const { tree, snackbar } = getSnackbarWithContext({
+      ButtonProps: { color: 'primary' }
+    })
     snackbar.showMessage('Internet deleted', 'Undo', () => {})
     tree.update()
     expect(tree.find(Button).prop('color')).toBe('primary')
@@ -77,10 +93,43 @@ describe('SnackbarProvider', () => {
 
   it('always returns the same reference', () => {
     const { Consumer, snackbar } = snackbarGrabber()
-    const tree = mount(<SnackbarProvider><Consumer /></SnackbarProvider>)
+    const tree = mount(
+      <SnackbarProvider>
+        <Consumer />
+      </SnackbarProvider>
+    )
     const firstSnackbar = snackbar()
     tree.instance().forceUpdate()
     expect(snackbar()).toBe(firstSnackbar)
+  })
+
+  it('supports custom snackbar renderers', () => {
+    const SnackbarComponent = jest.fn(({ message, action, ButtonProps, SnackbarProps }) => (
+      <Snackbar {...SnackbarProps} message={message || ''} action={action != null && <Button {...ButtonProps}>{action}</Button>} />
+    ))
+    const { tree, snackbar } = getSnackbarWithContext({ SnackbarComponent })
+    tree.update()
+
+    const handleAction = jest.fn()
+    snackbar.showMessage('Test', 'Action', handleAction, { type: 'error' })
+    tree.update()
+    expect(SnackbarComponent).toHaveBeenCalledWith(expect.objectContaining({
+      message: 'Test',
+      customParameters: { type: 'error' },
+      SnackbarProps: expect.anything()
+    }), expect.anything())
+    expect(tree.find(Snackbar).prop('open')).toBe(true)
+    expect(tree.find(Snackbar).prop('message')).toBe('Test')
+
+    tree
+      .find(Snackbar)
+      .find(Button)
+      .simulate('click')
+    expect(handleAction).toHaveBeenCalledTimes(1)
+
+    tree.find(Snackbar).prop('onClose')()
+    tree.update()
+    expect(tree.find(Snackbar).prop('open')).toBe(false)
   })
 })
 
@@ -97,8 +146,13 @@ function snackbarGrabber () {
 
 function getSnackbarWithContext (props) {
   const { Consumer, snackbar } = snackbarGrabber()
-  const tree = mount(<SnackbarProvider {...props}><Consumer /></SnackbarProvider>)
+  const tree = mount(
+    <SnackbarProvider {...props}>
+      <Consumer />
+    </SnackbarProvider>
+  )
   return {
-    tree, snackbar: snackbar()
+    tree,
+    snackbar: snackbar()
   }
 }

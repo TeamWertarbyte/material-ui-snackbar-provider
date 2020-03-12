@@ -4,6 +4,26 @@ import Snackbar from '@material-ui/core/Snackbar'
 import Button from '@material-ui/core/Button'
 import SnackbarContext from './SnackbarContext'
 
+function DefaultSnackbar ({
+  message, action, ButtonProps, SnackbarProps, customParameters
+}) {
+  return (
+    <Snackbar
+      {...SnackbarProps}
+      message={message || ''}
+      action={action != null && (
+        <Button
+          color='secondary'
+          size='small'
+          {...ButtonProps}
+        >
+          {action}
+        </Button>
+      )}
+    />
+  )
+}
+
 export default class SnackbarProvider extends PureComponent {
   state = {
     message: null,
@@ -22,10 +42,11 @@ export default class SnackbarProvider extends PureComponent {
    * @param {string} message message to display
    * @param {string} [action] label for the action button
    * @param {function} [handleAction] click handler for the action button
+   * @param {any} [customParameters] custom parameters that will be passed to the snackbar renderer
    * @public
    */
-  showMessage = (message, action, handleAction) => {
-    this.setState({ open: true, message, action, handleAction })
+  showMessage = (message, action, handleAction, customParameters) => {
+    this.setState({ open: true, message, action, handleAction, customParameters })
   }
 
   handleActionClick = () => {
@@ -41,13 +62,15 @@ export default class SnackbarProvider extends PureComponent {
     const {
       action,
       message,
-      open
+      open,
+      customParameters
     } = this.state
 
     const {
       ButtonProps = {},
       children,
-      SnackbarProps = {}
+      SnackbarProps = {},
+      SnackbarComponent = DefaultSnackbar
     } = this.props
 
     return (
@@ -57,21 +80,12 @@ export default class SnackbarProvider extends PureComponent {
         >
           {children}
         </SnackbarContext.Provider>
-        <Snackbar
-          {...SnackbarProps}
-          open={open}
-          message={message || ''}
-          action={action != null && (
-            <Button
-              color='secondary'
-              size='small'
-              {...ButtonProps}
-              onClick={this.handleActionClick}
-            >
-              {action}
-            </Button>
-          )}
-          onClose={this.handleClose}
+        <SnackbarComponent
+          message={message}
+          action={action}
+          ButtonProps={{ ...ButtonProps, onClick: this.handleActionClick }}
+          SnackbarProps={{ ...SnackbarProps, open, onClose: this.handleClose }}
+          customParameters={customParameters}
         />
       </React.Fragment>
     )
@@ -87,6 +101,11 @@ SnackbarProvider.propTypes = {
    * The children that are wrapped by this provider.
    */
   children: PropTypes.node,
+  /**
+   * Custom snackbar component.
+   * Props: open, message, action, ButtonProps, SnackbarProps
+   */
+  SnackbarComponent: PropTypes.elementType,
   /**
    * Props to pass through to the snackbar.
    */

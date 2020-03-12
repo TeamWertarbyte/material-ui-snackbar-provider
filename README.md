@@ -75,6 +75,7 @@ export default withSnackbar()(MyComponent) // export the wrapped component
 |----------------|------------|------------|--------------------------------
 |ButtonProps|`object`||Props to pass through to the action [button][mui-button].
 |children|`node`||The children that are wrapped by this provider.
+|SnackbarComponent|`ReactElement`||Custom snackbar component.
 |SnackbarProps|`object`||Props to pass through to the [snackbar][mui-snackbar].
 
 \* required property
@@ -83,10 +84,11 @@ export default withSnackbar()(MyComponent) // export the wrapped component
 [mui-snackbar]: https://material-ui.com/api/snackbar/
 
 ### Snackbar methods
-`snackbar.showMessage(message, [action, handler])`
+`snackbar.showMessage(message, [action, handler, customParameters])`
 * `message` (string) – message to display
 * `action` (string, _optional_) – label for the action button
 * `handler` (function, _optional_) – click handler for the action button
+* `customParameters` (any, _optional_) - custom parameters that will be passed to the snackbar renderer
 
 ## Concerns
 > Dude, this is not pretty React-like, I don't want to call a function to do something that changes the UI! I want to display a snackbar based on the state only, e.g. by using Redux.
