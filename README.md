@@ -23,7 +23,7 @@ import { SnackbarProvider } from 'material-ui-snackbar-provider'
 </SnackbarProvider>
 ```
 
-You can then display messages with the `useSnackbar` hook.
+You can then display messages with the `useSnackbar` hook. More examples [can be found here](https://github.com/TeamWertarbyte/material-ui-snackbar-provider/tree/master/stories).
 
 ```js
 import { useSnackbar } from 'material-ui-snackbar-provider'
@@ -69,6 +69,9 @@ class MyComponent {
 
 export default withSnackbar()(MyComponent) // export the wrapped component
 ```
+
+### Snackbar variants
+Snackbar variants (i.e. diffent styles for different types of messages) can be implemented using the `Alert` component from `@material-ui/lab`. An example that also adds a custom hook to display snackbars with different severities is available [here](https://github.com/TeamWertarbyte/material-ui-snackbar-provider/tree/master/stories/1-custom.stories.js).
 
 ### SnackbarProvider Props
 |Name            |Type        |Default     |Description

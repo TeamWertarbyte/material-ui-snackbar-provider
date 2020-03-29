@@ -8,7 +8,9 @@
     "test:unit": "jest",
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "build": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')",
-    "prepare": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')"
+    "prepare": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -29,7 +31,7 @@
   },
   "homepage": "https://github.com/TeamWertarbyte/material-ui-snackbar-provider#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
@@ -37,14 +39,21 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/core": "^4.4.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.47",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/react": "^5.3.17",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.1.0",
     "coveralls": "^3.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "jest": "^24.1.0",
+    "jest": "^25.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "standard": "^12.0.1"
+    "standard": "^14.3.3"
   },
   "peerDependencies": {
     "@material-ui/core": "^1.0.0 || ^3.0.0 || ^4.0.0",

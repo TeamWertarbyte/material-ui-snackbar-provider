@@ -74,7 +74,7 @@ export default class SnackbarProvider extends PureComponent {
     } = this.props
 
     return (
-      <React.Fragment>
+      <>
         <SnackbarContext.Provider
           value={this.contextValue}
         >
@@ -87,7 +87,7 @@ export default class SnackbarProvider extends PureComponent {
           SnackbarProps={{ ...SnackbarProps, open, onClose: this.handleClose }}
           customParameters={customParameters}
         />
-      </React.Fragment>
+      </>
     )
   }
 }
