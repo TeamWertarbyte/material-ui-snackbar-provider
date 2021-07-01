@@ -43,19 +43,24 @@ export default class SnackbarProvider extends PureComponent {
    * @param {string} [action] label for the action button
    * @param {function} [handleAction] click handler for the action button
    * @param {any} [customParameters] custom parameters that will be passed to the snackbar renderer
+   * @param {function} [handleHideWithoutAction] handler function that is called when the snackbar hides and the action button was not clicked
    * @public
    */
-  showMessage = (message, action, handleAction, customParameters) => {
-    this.setState({ open: true, message, action, handleAction, customParameters })
+  showMessage = (message, action, handleAction, customParameters, handleHideWithoutAction) => {
+    this.setState({ open: true, message, action, handleAction, customParameters, handleHideWithoutAction })
   }
 
   handleActionClick = () => {
-    this.handleClose()
+    this.setState({ open: false, handleAction: null, handleHideWithoutAction: null })
     this.state.handleAction()
   }
 
-  handleClose = () => {
-    this.setState({ open: false, handleAction: null })
+  handleHideWithoutAction = () => {
+    const handleHideWithoutAction = this.state.handleHideWithoutAction
+    this.setState({ open: false, handleAction: null, handleHideWithoutAction: null })
+    if (handleHideWithoutAction) {
+      handleHideWithoutAction()
+    }
   }
 
   render () {
@@ -84,7 +89,7 @@ export default class SnackbarProvider extends PureComponent {
           message={message}
           action={action}
           ButtonProps={{ ...ButtonProps, onClick: this.handleActionClick }}
-          SnackbarProps={{ ...SnackbarProps, open, onClose: this.handleClose }}
+          SnackbarProps={{ ...SnackbarProps, open, onClose: this.handleHideWithoutAction }}
           customParameters={customParameters}
         />
       </>

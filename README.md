@@ -87,11 +87,12 @@ Snackbar variants (i.e. diffent styles for different types of messages) can be i
 [mui-snackbar]: https://material-ui.com/api/snackbar/
 
 ### Snackbar methods
-`snackbar.showMessage(message, [action, handler, customParameters])`
+`snackbar.showMessage(message, [action, handler, customParameters, closeWithoutActionHandler])`
 * `message` (string) – message to display
 * `action` (string, _optional_) – label for the action button
 * `handler` (function, _optional_) – click handler for the action button
 * `customParameters` (any, _optional_) - custom parameters that will be passed to the snackbar renderer
+* `closeWithoutActionHandler` (function, _optional_) - function that is called when the snackbar hides and the action button was not clicked
 
 ## Concerns
 > Dude, this is not pretty React-like, I don't want to call a function to do something that changes the UI! I want to display a snackbar based on the state only, e.g. by using Redux.

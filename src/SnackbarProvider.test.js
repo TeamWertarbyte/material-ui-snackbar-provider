@@ -63,6 +63,40 @@ describe('SnackbarProvider', () => {
     expect(tree.find(Snackbar).prop('open')).toBe(false)
   })
 
+  it('calls the close callback after closing the snackbar', () => {
+    const { tree, snackbar } = getSnackbarWithContext()
+
+    const actionCallback = jest.fn()
+    const closeCallback = jest.fn()
+    snackbar.showMessage('Something went wrong', 'Retry', actionCallback, undefined, closeCallback)
+    tree.update()
+
+    tree.find(Snackbar).prop('onClose')()
+    tree.update()
+    expect(actionCallback).not.toHaveBeenCalled()
+    expect(closeCallback).toHaveBeenCalled()
+    tree.update()
+    expect(tree.find(Snackbar).prop('open')).toBe(false)
+  })
+
+  it('does not call the close callback after clicking the button', () => {
+    const { tree, snackbar } = getSnackbarWithContext()
+
+    const actionCallback = jest.fn()
+    const closeCallback = jest.fn()
+    snackbar.showMessage('Something went wrong', 'Retry', actionCallback, undefined, closeCallback)
+    tree.update()
+
+    tree
+      .find(Snackbar)
+      .find(Button)
+      .simulate('click')
+    expect(actionCallback).toHaveBeenCalled()
+    expect(closeCallback).not.toHaveBeenCalled()
+    tree.update()
+    expect(tree.find(Snackbar).prop('open')).toBe(false)
+  })
+
   it('hides the snackbar when its onClose prop is called', () => {
     const { tree, snackbar } = getSnackbarWithContext()
 
