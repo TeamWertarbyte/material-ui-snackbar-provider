@@ -1,6 +1,6 @@
 {
   "name": "material-ui-snackbar-provider",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A convenient way to use material-ui's snackbars.",
   "main": "lib/index.js",
   "scripts": {
