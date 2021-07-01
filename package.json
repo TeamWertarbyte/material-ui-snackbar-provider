@@ -7,8 +7,8 @@
     "test": "standard && jest",
     "test:unit": "jest",
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "build": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')",
-    "prepare": "babel src -d lib && rm lib/*.test.js && (bash -c 'shopt -s globstar && cd src && cp --parents -vt ../lib/ **/*.d.ts')",
+    "build": "babel src -d lib && rm lib/*.test.js && (find src -name \\*.d.ts -exec cp {} lib \\;)",
+    "prepublishOnly": "babel src -d lib && rm lib/*.test.js && (find src -name \\*.d.ts -exec cp {} lib \\;)",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
