@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Snackbar, Button } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Snackbar, Button } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 
-export default function CustomSnackbar({
+export default function CustomSnackbar ({
   message,
   action,
   ButtonProps,
@@ -14,18 +14,16 @@ export default function CustomSnackbar({
     <Snackbar autoHideDuration={3000} {...SnackbarProps}>
       <Alert
         severity={customParameters?.type}
-        action={
-          action != null && (
-            <Button color="inherit" size="small" {...ButtonProps}>
-              {action}
-            </Button>
-          )
-        }
+        action={action != null && (
+          <Button color='inherit' size='small' {...ButtonProps}>
+            {action}
+          </Button>
+        )}
       >
         {message}
       </Alert>
     </Snackbar>
-  );
+  )
 }
 
 CustomSnackbar.propTypes = {
@@ -34,6 +32,6 @@ CustomSnackbar.propTypes = {
   ButtonProps: PropTypes.object,
   SnackbarProps: PropTypes.object,
   customParameters: PropTypes.shape({
-    type: PropTypes.oneOf(["error", "warning", "info", "success"])
+    type: PropTypes.oneOf(['error', 'warning', 'info', 'success'])
   })
-};
+}
