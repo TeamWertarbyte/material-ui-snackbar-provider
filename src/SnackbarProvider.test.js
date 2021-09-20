@@ -2,7 +2,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import SnackbarProvider from './SnackbarProvider'
-import { Snackbar, Button } from '@material-ui/core'
+import { Snackbar, Button } from '@mui/material'
 import SnackbarContext from './SnackbarContext'
 
 describe('SnackbarProvider', () => {
