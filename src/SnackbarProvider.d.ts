@@ -1,6 +1,6 @@
 import React from 'react'
-import { ButtonProps } from '@material-ui/core/Button';
-import { SnackbarProps } from '@material-ui/core/Snackbar';
+import { ButtonProps } from '@mui/material/Button';
+import { SnackbarProps } from '@mui/material/Snackbar';
 
 export interface SnackbarProviderProps {
     ButtonProps?: Partial<ButtonProps>,
