@@ -10,7 +10,7 @@ export interface SnackbarProviderProps {
         action?: string;
         ButtonProps?: Partial<ButtonProps>;
         SnackbarProps: Partial<SnackbarProps>;
-        customParameters: any;
+        customParameters: { autoHideDuration?: number };
     }>,
     SnackbarProps?: Partial<SnackbarProps>
 }

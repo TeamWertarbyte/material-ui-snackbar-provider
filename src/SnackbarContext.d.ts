@@ -7,7 +7,7 @@ export interface SnackbarProviderValue {
    * @param {any} [customParameters] custom parameters that will be passed to the snackbar renderer
    * @param {function} [handleHideWithoutAction] handler function that is called when the snackbar hides and the action button was not clicked
    */
-  showMessage(message: string, action?: string, handleAction?: () => void, customParameters?: any, handleHideWithoutAction?: () => void)
+  showMessage(message: string, action?: string, handleAction?: () => void, customParameters?: { autoHideDuration?: number }, handleHideWithoutAction?: () => void)
 }
 
 declare const SnackbarContext: React.Context<SnackbarProviderValue>

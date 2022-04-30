@@ -125,6 +125,14 @@ describe('SnackbarProvider', () => {
     expect(tree.find(Button).prop('color')).toBe('primary')
   })
 
+  it('can overwrite the auto hide duration when showing a snackbar', () => {
+    const { tree, snackbar } = getSnackbarWithContext({ SnackbarProps: { autoHideDuration: 6000 } })
+    snackbar.showMessage('Internet deleted', 'Undo', () => {}, { autoHideDuration: 42000 })
+    tree.update()
+
+    expect(tree.find(Snackbar).prop('autoHideDuration')).toBe(42000)
+  })
+
   it('always returns the same reference', () => {
     const { Consumer, snackbar } = snackbarGrabber()
     const tree = mount(
