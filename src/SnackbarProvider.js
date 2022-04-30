@@ -89,7 +89,14 @@ export default class SnackbarProvider extends PureComponent {
           message={message}
           action={action}
           ButtonProps={{ ...ButtonProps, onClick: this.handleActionClick }}
-          SnackbarProps={{ ...SnackbarProps, open, onClose: this.handleHideWithoutAction }}
+          SnackbarProps={{
+            ...SnackbarProps,
+            open,
+            onClose: this.handleHideWithoutAction,
+            autoHideDuration: customParameters && 'autoHideDuration' in customParameters
+              ? customParameters.autoHideDuration
+              : SnackbarProps.autoHideDuration
+          }}
           customParameters={customParameters}
         />
       </>
